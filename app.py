@@ -13,8 +13,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+# ─────────────────────────────────────────────
 # FIB Webhook — called by FIB when payment status changes
-
+# ─────────────────────────────────────────────
 @app.route("/webhook/fib", methods=["POST"])
 def fib_webhook():
     data = request.json
@@ -48,6 +49,10 @@ def fib_webhook():
 
     return jsonify({"ok": True}), 200
 
+
+# ─────────────────────────────────────────────
+# Dashboard API Routes
+# ─────────────────────────────────────────────
 
 @app.route("/api/stats", methods=["GET"])
 def get_stats():
@@ -108,4 +113,5 @@ def add_seller():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
