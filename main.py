@@ -10,9 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
 
-from flask_app.app import app
-from bot.bot import run_bot
-
+from app import app
+from bot import run_bot
 
 def run_flask():
     port = int(os.environ.get("PORT", 5000))
